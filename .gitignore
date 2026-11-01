@@ -1,0 +1,28 @@
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+Data/Raw/
+Data/Parquet/
+Data/External/
+
+# Outputs
+outputs/
+
+# DuckDB
+*.duckdb
+*.db
+
+# Secrets
+.env
+
+# OS
+.DS_Store
+Thumbs.db

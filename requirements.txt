@@ -1,0 +1,6 @@
+duckdb
+polars
+pyarrow
+pandas
+jupyter
+matplotlib
