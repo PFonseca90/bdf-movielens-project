@@ -11,6 +11,13 @@ The project is designed to demonstrate a progression from local data processing 
 
 The initial analysis is developed locally using DuckDB, Parquet and Python. The project will later be scaled using AWS services such as Amazon S3, AWS Glue and Amazon Athena.
 
+## Canonical Question
+
+1. What are the movie genres in the dataset?
+1. What is the number of movies per genre?
+1. What is the movie rating distribution per user?
+1. What are the movies with the highest average rating?
+
 ## Main Research Questions
 
 The project will explore questions such as:
@@ -22,6 +29,20 @@ The project will explore questions such as:
 5. How does the popularity of actors or directors evolve over time and across different genres or themes?
 
 Additional research questions may be introduced as the project evolves.
+
+## Additional Research Questions:
+- Minimum ratings per user
+- 
+
+## Presentation Outline
+
+- XXX
+- YYY
+- Basic Questions (Maybe knock these out to keep a punch?)
+- Evolved Questions:
+    - Do Sequels Polarize Users?
+    - 
+- ZZZ
 
 ## Current Progress
 
