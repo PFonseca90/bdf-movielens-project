@@ -1,16 +1,20 @@
 # Todos
 - Write to CSV - Libi
 - Add Jupytext & Scaffold - Keni
-- Start and Outline the presentation - *
-- Move the 32M to S3 - *
-- Answer Basic Questions - *
-- Answer More Interesting Questions - *
+- Start and Outline the presentation - Alice
+- Move the 32M to S3 - Pedro
+- Answer Basic Questions - Pedro
+- Answer More Interesting Questions - Everybody
+- Explore & Add Complimentary Datasets
+    - IMDB - Libi
+    - TMDB - 
+- AWS Glue/Athena to download 32M, move to S3, Run queries online*
 - Sentiment rating ?
 - Compare the dataset: - *
     - 100k contains 100k ratings, < 1,000 users, ~1,600 movies
     - 32M contains xxx, yyy, zzz 
-- Utils
-    - Reusable method for converting to Parquet
+- Record the execution times locally. When is it really big data?
+- Indicate limitations and possibilities for future work.
 
 ## Objectives
 - Become familiar with a dataset that can start small and grow to be really big yet manageable with limited hardware
@@ -62,3 +66,11 @@
 4. Recommender System Diagnostics (Data Engineering Focus)
 - Popularity bias (The Long Tail): What percentage of all 25 million ratings belong to just the top 1% of most-watched movies?
 - Cold-start velocity: How quickly does a newly released movie accumulate its first 100 ratings after being added to the platform?
+
+5. Correlation between profitability and ratings
+- Ratings of movies by particular directors
+- Which directors, actors, have the highest ratings
+- Is Nicholas Cage the most profitable actor
+- Do people like Monster movies? Popularity of monsters vs years
+- What are the popular genres in 2026?
+- Which Genre is popular and when?
