@@ -49,3 +49,25 @@ Additional research questions may be introduced as the project evolves.
 The project environment has been set up locally in VS Code, including a dedicated Python virtual environment and the required packages for data processing and analysis. The project repository has also been created and connected to GitHub, with Git configured to exclude local environments, raw datasets and generated files.
 
 The MovieLens dataset has been added locally to `Data/Raw/`, and the development environment has been successfully validated with DuckDB, Polars, PyArrow, Pandas and Matplotlib. The next step is to build the initial ingestion pipeline to inspect the CSV files, validate the data and convert them to Parquet.
+
+
+## UV
+
+This project usess `uv`, the Python package and project manager. You can do the following:
+
+- `uv run some_module.py` to run code without explicitly activating a venv.
+- `uv add <package>`. # See pyproject.toml.
+- `uv sync` creates a `.venv` if it does not already exist. you can now run modules without `uv run` prefixes. `uv sync` installs this project in editable mode.
+- You can also do `uv pip install -e .` or `uv pip install .`
+
+## Jupytext
+
+Notebooks are good at prototyping, but especially messy in version control. This project uses jupytext. 
+
+Feel free to write code in the `notebook/` folder or use the python modules in `src/`. To sync the codes, run:
+
+```sh
+uv run jupytext --sync src/*.py
+```
+
+We do not commit the notebooks, `.ipynb` files, they are ignored. Run the sync above to get notebook files.
