@@ -66,8 +66,17 @@ Notebooks are good at prototyping, but especially messy in version control. This
 
 Feel free to write code in the `notebook/` folder or use the python modules in `src/`. To sync the codes, run:
 
+Syncs all `.py` to `ipynb`:
 ```sh
 uv run jupytext --sync src/*.py
 ```
 
+Sync one notebook to `.py`:
+
+```sh
+jupytext --sync notebooks/imdb_download.ipynb 
+```
+
 We do not commit the notebooks, `.ipynb` files, they are ignored. Run the sync above to get notebook files.
+
+Alternative, pre-commit handles it all.
