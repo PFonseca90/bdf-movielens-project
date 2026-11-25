@@ -1,0 +1,8 @@
+step,movies
+MovieLens movies,87585
+MovieLens movies with ratings,84432
+Rotten Tomatoes movies (with score + year),16514
+Matched MovieLens <-> RT (title+year),13738
+Matched with exact same year,11270
+"Analysis set (>= 100 ML ratings, >= 20 reviews)",6932
+Analysis set with IMDb rating,6915

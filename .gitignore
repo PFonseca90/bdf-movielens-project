@@ -26,3 +26,8 @@ outputs/
 # OS
 .DS_Store
 Thumbs.db
+# DuckDB spill folder
+.duckdb_tmp/
+
+# Node (game)
+node_modules/
