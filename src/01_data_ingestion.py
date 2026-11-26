@@ -1,12 +1,37 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     formats: notebooks///ipynb,src///py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.19.7
+#   kernelspec:
+#     display_name: bdf-movielens-project (3.13.7)
+#     language: python
+#     name: python3
+# ---
+
+# %%
 from pathlib import Path
 import duckdb
 
+# %%
 # Project paths use (__file__ ).resolve().parent.parent in order to run the code in any machine without changinf the path.
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = (
+    Path(__file__).resolve().parent.parent
+    if "__file__" in globals()
+    else Path.cwd().resolve().parent  # notebooks run from notebooks/
+)
+print(PROJECT_ROOT)
 
+# %%
 RAW_DIR = PROJECT_ROOT / "Data" / "Raw"
 PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet"
 
+# %%
 # MovieLens files
 FILES = [
     "movies.csv",
@@ -15,23 +40,31 @@ FILES = [
     "links.csv",
 ]
 
+# %%
 print("Project root:", PROJECT_ROOT)
 print("Raw data folder:", RAW_DIR)
 print("Parquet folder:", PARQUET_DIR)
 
+# %%
 # Check if folders exist
 print("\nFolder validation")
 
+# %%
 print("Raw folder exists:", RAW_DIR.exists())
 
+# %%
 PARQUET_DIR.mkdir(parents=True, exist_ok=True)
 
+# %%
 print("Parquet folder exists:", PARQUET_DIR.exists())
 
+# %% [markdown]
 # check if files exist
 
+# %%
 print("\nMovieLens files")
 
+# %%
 for file_name in FILES:
     file_path = RAW_DIR / file_name
 
@@ -39,13 +72,16 @@ for file_name in FILES:
         print(f"[OK] {file_name}")
     else:
         print(f"[MISSING] {file_name}")
-        
+
+# %% [markdown]
 # --------------------------------------------------
 # Inspect CSV files with DuckDB
 # --------------------------------------------------
 
+# %%
 print("\nDataset inspection")
 
+# %%
 for file_name in FILES:
     file_path = RAW_DIR / file_name
 
@@ -57,7 +93,7 @@ for file_name in FILES:
         SELECT COUNT(*)
         FROM read_csv_auto('{file_path.as_posix()}') /* as_posix() is used to convert the path to a string that can be used in SQL queries */
         """
-    ).fetchone()[0]
+    ).fetchall()[0][0]
 
     print("Rows:", row_count)
 
@@ -75,12 +111,15 @@ for file_name in FILES:
     for column in schema:
         print(f"  {column[0]} -> {column[1]}")
 
+# %% [markdown]
 # --------------------------------------------------
 # Convert CSV files to Parquet
 # --------------------------------------------------
 
+# %%
 print("\nCSV -> Parquet conversion")
 
+# %%
 for file_name in FILES:
     csv_path = RAW_DIR / file_name
 
@@ -103,12 +142,15 @@ for file_name in FILES:
 
     print(f"[CREATED] {parquet_name}")
 
+# %% [markdown]
 # --------------------------------------------------
 # Validate Parquet files
 # --------------------------------------------------
 
+# %%
 print("\nParquet validation")
 
+# %%
 for file_name in FILES:
     csv_path = RAW_DIR / file_name
 
@@ -120,14 +162,14 @@ for file_name in FILES:
         SELECT COUNT(*)
         FROM read_csv_auto('{csv_path.as_posix()}')
         """
-    ).fetchone()[0]
+    ).fetchall()[0][0]
 
     parquet_rows = duckdb.sql(
         f"""
         SELECT COUNT(*)
         FROM read_parquet('{parquet_path.as_posix()}')
         """
-    ).fetchone()[0]
+    ).fetchall()[0][0]
 
     if csv_rows == parquet_rows:
         print(f"[OK] {parquet_name}: {parquet_rows} rows")

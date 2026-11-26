@@ -1,35 +1,65 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     formats: notebooks///ipynb,src///py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.19.7
+#   kernelspec:
+#     display_name: bdf-movielens-project (3.13.7)
+#     language: python
+#     name: python3
+# ---
+
+# %%
 from pathlib import Path
 import duckdb
 
 
+# %% [markdown]
 # --------------------------------------------------
 # Project paths
 # --------------------------------------------------
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# %%
+PROJECT_ROOT = (
+    Path(__file__).resolve().parent.parent
+    if "__file__" in globals()
+    else Path.cwd().resolve().parent  # notebooks run from notebooks/
+)
 PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet" / "ml-32m"
 
+# %%
 movies_path = PARQUET_DIR / "movies.parquet"
 ratings_path = PARQUET_DIR / "ratings.parquet"
 tags_path = PARQUET_DIR / "tags.parquet"
 links_path = PARQUET_DIR / "links.parquet"
 
 
+# %% [markdown]
 # --------------------------------------------------
 # DuckDB connection
 # --------------------------------------------------
 
+# %%
 con = duckdb.connect()
 
 
+# %%
 print("Starting data validation and EDA...")
 
+# %% [markdown]
 # --------------------------------------------------
 # Dataset overview
 # --------------------------------------------------
 
+# %%
 print("\n--- DATASET OVERVIEW ---")
 
+# %%
 datasets = {
     "movies": movies_path,
     "ratings": ratings_path,
@@ -37,6 +67,7 @@ datasets = {
     "links": links_path
 }
 
+# %%
 for name, path in datasets.items():
 
     row_count = con.sql(
@@ -44,17 +75,20 @@ for name, path in datasets.items():
         SELECT COUNT(*)
         FROM read_parquet('{path.as_posix()}')
         """
-    ).fetchone()[0]
+    ).fetchall()[0][0]
 
     print(f"{name}: {row_count} rows")
 
 
+# %% [markdown]
 # --------------------------------------------------
 # Unique IDs and duplicates
 # --------------------------------------------------
 
+# %%
 print("\n--- UNIQUE IDS ---")
 
+# %%
 movies_summary = con.sql(
     f"""
     SELECT
@@ -62,13 +96,15 @@ movies_summary = con.sql(
         COUNT(DISTINCT movieId) AS unique_movie_ids
     FROM read_parquet('{movies_path.as_posix()}')
     """
-).fetchone()
+).fetchall()[0]
 
+# %%
 print("Movies:")
 print("  Rows:", movies_summary[0])
 print("  Unique movie IDs:", movies_summary[1])
 
 
+# %%
 ratings_summary = con.sql(
     f"""
     SELECT
@@ -77,19 +113,23 @@ ratings_summary = con.sql(
         COUNT(DISTINCT movieId) AS rated_movies
     FROM read_parquet('{ratings_path.as_posix()}')
     """
-).fetchone()
+).fetchall()[0]
 
+# %%
 print("\nRatings:")
 print("  Ratings:", ratings_summary[0])
 print("  Users:", ratings_summary[1])
 print("  Rated movies:", ratings_summary[2])
 
+# %% [markdown]
 # --------------------------------------------------
 # Rating statistics
 # --------------------------------------------------
 
+# %%
 print("\n--- RATING STATISTICS ---")
 
+# %%
 rating_stats = con.sql(
     f"""
     SELECT
@@ -100,20 +140,24 @@ rating_stats = con.sql(
         MEDIAN(rating) AS median_rating
     FROM read_parquet('{ratings_path.as_posix()}')
     """
-).fetchone()
+).fetchall()[0]
 
+# %%
 print("Total ratings:", rating_stats[0])
 print("Minimum rating:", rating_stats[1])
 print("Maximum rating:", rating_stats[2])
 print("Mean rating:", rating_stats[3])
 print("Median rating:", rating_stats[4])
 
+# %% [markdown]
 # --------------------------------------------------
 # Rating distribution
 # --------------------------------------------------
 
+# %%
 print("\n--- RATING DISTRIBUTION ---")
 
+# %%
 rating_distribution = con.sql(
     f"""
     SELECT
@@ -125,14 +169,18 @@ rating_distribution = con.sql(
     """
 ).df()
 
+# %%
 print(rating_distribution)
 
+# %% [markdown]
 # --------------------------------------------------
 # Temporal coverage
 # --------------------------------------------------
 
+# %%
 print("\n--- TEMPORAL COVERAGE ---")
 
+# %%
 temporal_summary = con.sql(
     f"""
     SELECT
@@ -142,8 +190,9 @@ temporal_summary = con.sql(
         MAX(YEAR(TO_TIMESTAMP(timestamp))) AS last_year
     FROM read_parquet('{ratings_path.as_posix()}')
     """
-).fetchone()
+).fetchall()[0]
 
+# %%
 print("First rating:", temporal_summary[0])
 print("Last rating:", temporal_summary[1])
 print(
@@ -153,12 +202,15 @@ print(
     temporal_summary[3]
 )
 
+# %% [markdown]
 # --------------------------------------------------
 # Ratings by year
 # --------------------------------------------------
 
+# %%
 print("\n--- RATINGS BY YEAR ---")
 
+# %%
 ratings_by_year = con.sql(
     f"""
     SELECT
@@ -170,14 +222,18 @@ ratings_by_year = con.sql(
     """
 ).df()
 
+# %%
 print(ratings_by_year)
 
+# %% [markdown]
 # --------------------------------------------------
 # Data Quality Validation - Missing Values
 # --------------------------------------------------
 
+# %%
 print("\n--- DATA QUALITY: MISSING VALUES ---")
 
+# %%
 missing_values = con.sql(
     f"""
     SELECT
@@ -190,14 +246,18 @@ missing_values = con.sql(
     """
 ).df()
 
+# %%
 print(missing_values.to_string(index=False))
 
+# %% [markdown]
 # --------------------------------------------------
 # Data Quality Validation - Duplicate Ratings
 # --------------------------------------------------
 
+# %%
 print("\n--- DATA QUALITY: DUPLICATE RATINGS ---")
 
+# %%
 duplicate_summary = con.sql(
     f"""
     SELECT
@@ -206,17 +266,21 @@ duplicate_summary = con.sql(
             AS duplicate_ratings
     FROM read_parquet('{ratings_path.as_posix()}')
     """
-).fetchone()
+).fetchall()[0]
 
+# %%
 print("Total ratings:", duplicate_summary[0])
 print("Duplicate userId/movieId pairs:", duplicate_summary[1])
 
+# %% [markdown]
 # --------------------------------------------------
 # Data Quality Validation - Referential Integrity
 # --------------------------------------------------
 
+# %%
 print("\n--- DATA QUALITY: REFERENTIAL INTEGRITY ---")
 
+# %%
 referential_integrity = con.sql(
     f"""
     SELECT
@@ -226,16 +290,20 @@ referential_integrity = con.sql(
         ON r.movieId = m.movieId
     WHERE m.movieId IS NULL
     """
-).fetchone()[0]
+).fetchall()[0][0]
 
+# %%
 print("Ratings without matching movies:", referential_integrity)
 
+# %% [markdown]
 # --------------------------------------------------
 # Data Quality Validation - Rating Values
 # --------------------------------------------------
 
+# %%
 print("\n--- DATA QUALITY: RATING VALUES ---")
 
+# %%
 invalid_ratings = con.sql(
     f"""
     SELECT COUNT(*) AS invalid_ratings
@@ -245,6 +313,7 @@ invalid_ratings = con.sql(
        OR rating > 5.0
        OR rating * 2 != FLOOR(rating * 2)
     """
-).fetchone()[0]
+).fetchall()[0][0]
 
+# %%
 print("Invalid rating values:", invalid_ratings)
