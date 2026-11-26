@@ -14,8 +14,6 @@
 from pathlib import Path
 import duckdb
 
-import this
-
 # %%
 # Project paths use (__file__ ).resolve().parent.parent in order to run the code in any machine without changinf the path.
 PROJECT_ROOT = (
@@ -25,8 +23,8 @@ PROJECT_ROOT = (
 )
 
 # %%
-RAW_DIR = PROJECT_ROOT / "Data" / "Raw" / "ml-32m"
-PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet" / "ml-32m"
+RAW_DIR = PROJECT_ROOT / "Data" / "Raw" / "MovieLens"
+PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet" / "MovieLens"
 
 # %%
 # MovieLens files
@@ -85,23 +83,19 @@ for file_name in FILES:
     print(f"\n--- {file_name} ---")
 
     # Count rows
-    row_count = duckdb.sql(
-        f"""
+    row_count = duckdb.sql(f"""
         SELECT COUNT(*)
         FROM read_csv_auto('{file_path.as_posix()}') /* as_posix() is used to convert the path to a string that can be used in SQL queries */
-        """
-    ).fetchone()[0]
+        """).limit(1).fetchall()  # ).fetchone()[0]
 
     print("Rows:", row_count)
 
     # Inspect columns and inferred data types
-    schema = duckdb.sql(
-        f"""
+    schema = duckdb.sql(f"""
         DESCRIBE
         SELECT *
         FROM read_csv_auto('{file_path.as_posix()}')
-        """
-    ).fetchall()
+        """).fetchall()
 
     print("Columns:")
 
@@ -123,8 +117,7 @@ for file_name in FILES:
     parquet_name = file_name.replace(".csv", ".parquet")
     parquet_path = PARQUET_DIR / parquet_name
 
-    duckdb.sql(
-        f"""
+    duckdb.sql(f"""
         COPY (
             SELECT *
             FROM read_csv_auto('{csv_path.as_posix()}')
@@ -134,8 +127,7 @@ for file_name in FILES:
             FORMAT PARQUET,
             COMPRESSION ZSTD
         )
-        """
-    )
+        """)
 
     print(f"[CREATED] {parquet_name}")
 
@@ -154,25 +146,20 @@ for file_name in FILES:
     parquet_name = file_name.replace(".csv", ".parquet")
     parquet_path = PARQUET_DIR / parquet_name
 
-    csv_rows = duckdb.sql(
-        f"""
+    csv_rows = duckdb.sql(f"""
         SELECT COUNT(*)
         FROM read_csv_auto('{csv_path.as_posix()}')
-        """
-    ).fetchone()[0]
+        """).limit(1).fetchall()  # ).fetchone()[0]
 
-    parquet_rows = duckdb.sql(
-        f"""
+    parquet_rows = duckdb.sql(f"""
         SELECT COUNT(*)
         FROM read_parquet('{parquet_path.as_posix()}')
-        """
-    ).fetchone()[0]
+        """).limit(1).fetchall()  # ).fetchone()[0]
 
     if csv_rows == parquet_rows:
         print(f"[OK] {parquet_name}: {parquet_rows} rows")
     else:
-        print(
-            f"[ERROR] {parquet_name}: "
-            f"CSV={csv_rows}, Parquet={parquet_rows}"
-        )
+        print(f"[ERROR] {parquet_name}: " f"CSV={csv_rows}, Parquet={parquet_rows}")
 
+
+# %%

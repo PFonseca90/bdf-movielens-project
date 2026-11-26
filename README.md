@@ -30,35 +30,12 @@ The project will explore questions such as:
 
 Additional research questions may be introduced as the project evolves.
 
-## Additional Research Questions:
-- Minimum ratings per user
-- 
+## Local Setup
+The project dependencies are stored in a requirements file, run the following:
 
-## Presentation Outline
-
-- XXX
-- YYY
-- Basic Questions (Maybe knock these out to keep a punch?)
-- Evolved Questions:
-    - Do Sequels Polarize Users?
-    - 
-- ZZZ
-
-## Current Progress
-
-The project environment has been set up locally in VS Code, including a dedicated Python virtual environment and the required packages for data processing and analysis. The project repository has also been created and connected to GitHub, with Git configured to exclude local environments, raw datasets and generated files.
-
-The MovieLens dataset has been added locally to `Data/Raw/`, and the development environment has been successfully validated with DuckDB, Polars, PyArrow, Pandas and Matplotlib. The next step is to build the initial ingestion pipeline to inspect the CSV files, validate the data and convert them to Parquet.
-
-
-## UV
-
-This project usess `uv`, the Python package and project manager. You can do the following:
-
-- `uv run some_module.py` to run code without explicitly activating a venv.
-- `uv add <package>`. # See pyproject.toml.
-- `uv sync` creates a `.venv` if it does not already exist. you can now run modules without `uv run` prefixes. `uv sync` installs this project in editable mode.
-- You can also do `uv pip install -e .` or `uv pip install .`
+```sh
+pip install -r requirements.txt
+```
 
 ## Jupytext
 
@@ -80,3 +57,48 @@ jupytext --sync notebooks/imdb_download.ipynb
 We do not commit the notebooks, `.ipynb` files, they are ignored. Run the sync above to get notebook files.
 
 Alternative, pre-commit handles it all.
+
+## Data Layout
+Data is not included in the repo; instead we provide scripts that can download the required data end-to-end. Where this is not possible, instructions is included in this README.
+
+The expected data layout following a successful setup is outlined below:
+
+```
+PROJECT_ROOT
+____Data
+| |____Parquet
+| | |____TMDB
+| | | |____tmdb_ml32m_features.parquet
+| | |____IMDB
+| | | |____title_episode.parquet
+| | | |____name_basics.parquet
+| | | |____title_basics.parquet
+| | | |____title_ratings.parquet
+| | | |____title_principals.parquet
+| | | |____title_akas.parquet
+| | | |____title_crew.parquet
+| | |____MovieLens
+| | | |____ratings.parquet
+| | | |____movies.parquet
+| | | |____tags.parquet
+| | | |____links.parquet
+| |____Raw
+| | |____TMDB
+| | | |____tmdb_enriched_ml32m.jsonl
+| | | |____tmdb.jsonl
+| | |____IMDB
+| | | |____title.principals.tsv.gz
+| | | |____title.akas.tsv.gz
+| | | |____title.basics.tsv.gz
+| | | |____title.crew.tsv.gz
+| | | |____title.ratings.tsv.gz
+| | | |____name.basics.tsv.gz
+| | | |____title.episode.tsv.gz
+| | |____MovieLens
+| | | |____links.csv
+| | | |____tags.csv
+| | | |____checksums.txt
+| | | |____ratings.csv
+| | | |____README.txt
+| | | |____movies.csv
+```
