@@ -1,18 +1,24 @@
 # Todos
-- Write to CSV - COMPLETED!! 
-- Add Jupytext & Scaffold - On GOING!!
-- Start and Outline the presentation - On GOING!!
-- Move the 32M to S3 -   COPY PAST On GOING!!
-- Check the process time of a question local Vs. CLoud - ON GOING!
-- Answer Basic Questions - ON GOING!
-- Answer More Interesting Questions - Everybody
-- Explore & Add Complimentary Datasets COMPLETED!! 
-    - IMDB - COMPLETED!! 
-    - TMDB - COMPLETED!!
-    - ROTTEN TOMATOES - *PUT LINK ON READ ME FILE* - LIBI - ON GOING!
-- AWS Glue/Athena to download 32M, move to S3, Run queries online COMPLETED!!
-- Record the execution times locally. When is it really big data? On GOING!!
-- Indicate limitations and possibilities for future work.
+- [x] Add Group CSV
+- [x] Add Jupytext & Scaffold
+- [x] Outline the presentation
+- [x] Presentation: Add pages as interesting questions have charts
+- [x] Start backup presentation - Keni
+- [x] Analyze 32M locally
+- [x] Analyze 32M & 1b on S3 - Pedro
+- [ ] Answer Basic Questions: Include SQL in source
+- [ ] Answer More Interesting Questions - Everybody
+- [ ] Explore & Add Complimentary Datasets
+    - [ ] IMDB - Libi
+    - [ ] TMDB - Keni
+    - [ ] Rotten Tomatoes, Reference in README.md - Libi
+- [ ] Organize Game Code in Repo - Libi
+- [ ] Prettify Basic Answers Charts
+- [ ] AWS Glue/Athena, Add queries to repo - Pedro
+- [ ] AWS Glue/Athena, Benchmark - Pedro
+- [ ] Indicate limitations and possibilities for future work.
+- [ ] Merge Code
+- [ ] Organize Code for Submissions - Keni
 
 ## Objectives
 - Become familiar with a dataset that can start small and grow to be really big yet manageable with limited hardware
