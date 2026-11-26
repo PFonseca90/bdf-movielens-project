@@ -1,6 +1,6 @@
 # Todos
-- Write to CSV - Libi
-- Add Jupytext & Scaffold - Keni
+- Write to CSV - COMPLETED!! 
+- Add Jupytext & Scaffold - COMPLETED!!
 - Start and Outline the presentation - Alice
 - Move the 32M to S3 - Pedro
 - Answer Basic Questions - Pedro
