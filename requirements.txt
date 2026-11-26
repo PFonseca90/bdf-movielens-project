@@ -4,3 +4,9 @@ pyarrow
 pandas
 jupyter
 matplotlib
+fastparquet
+jupytext
+ipykernel
+numpy
+requests
+tqdm
