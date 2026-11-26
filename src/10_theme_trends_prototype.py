@@ -19,10 +19,19 @@ PQ = ROOT / "Data/Parquet/ml-32m"
 OUT = ROOT / "results/theme_trends"
 OUT.mkdir(parents=True, exist_ok=True)
 
-THEMES = [  # theme, regex on lower(tag)
-    ("Zombies", r"\bzombie"),
-    ("Vampires", r"\bvampire"),
-    ("Virus & pandemic", r"\b(virus|pandemic|epidemic|outbreak|plague|contagion|infection|infected)\b"),
+
+THEMES = [
+    # Monster themes
+    ("Zombies", r"\bzombies?\b"),
+    ("Vampires", r"\bvampires?\b"),
+    ("Aliens", r"\baliens?\b"),
+    ("Werewolves", r"\bwerewol(?:f|ves)\b"),
+    ("Dinosaurs", r"\bdinosaurs?\b"),
+    ("Monsters", r"\bkaiju\b|\bmonsters?\b"),
+
+    # Original research themes
+    ("Virus & pandemic",
+     r"\b(virus|pandemic|epidemic|outbreak|plague|contagion|infection|infected)\b"),
     ("Apocalypse", r"apocalyp|end of the world|nuclear war"),
     ("Dystopia", r"dystopi"),
     ("Superheroes", r"superhero"),
