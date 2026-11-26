@@ -1,19 +1,20 @@
 # Todos
 - Write to CSV - COMPLETED!! 
-- Add Jupytext & Scaffold - COMPLETED!!
-- Start and Outline the presentation - Alice
-- Move the 32M to S3 - Pedro
-- Answer Basic Questions - Pedro
+- Add Jupytext & Scaffold - On GOING!!
+- Start and Outline the presentation - On GOING!!
+- Move the 32M to S3 -  COMPLETED!! 
+- Check the process time of a question local Vs. CLoud - ON GOING!
+- Answer Basic Questions - ON GOING!
 - Answer More Interesting Questions - Everybody
-- Explore & Add Complimentary Datasets
-    - IMDB - Libi
-    - TMDB - 
-- AWS Glue/Athena to download 32M, move to S3, Run queries online*
+- Explore & Add Complimentary Datasets COMPLETED!! 
+    - IMDB - COMPLETED!! 
+    - TMDB - COMPLETED!! 
+- AWS Glue/Athena to download 32M, move to S3, Run queries online COPY PAST On GOING!!
 - Sentiment rating ?
 - Compare the dataset: - *
-    - 100k contains 100k ratings, < 1,000 users, ~1,600 movies
-    - 32M contains xxx, yyy, zzz 
-- Record the execution times locally. When is it really big data?
+    - 100k contains 100k ratings, < 1,000 users, ~1,600 movies COMPLETED!! 
+    - 32M contains xxx, yyy, zzz COMPLETED!! 
+- Record the execution times locally. When is it really big data? On GOING!!
 - Indicate limitations and possibilities for future work.
 
 ## Objectives
