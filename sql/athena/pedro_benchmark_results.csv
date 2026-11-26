@@ -1,0 +1,11 @@
+experiment,dataset,workload,engine,execution_seconds,measurement,executions,athena_scanned,athena_queue_ms,notes
+Q3,MovieLens 32M,Ratings per user,DuckDB,0.1166,single,1,,,DuckDB VS Code extension; local Parquet
+Q3,MovieLens 32M,Ratings per user,Athena,1.318,single,1,796.35 KB,103,Reported scan volume unexpectedly small; result reuse disabled according to console setting
+Q4,MovieLens 32M,Highest-rated movies,DuckDB,1.2216,single,1,,,DuckDB VS Code extension; local Parquet
+Q4,MovieLens 32M,Highest-rated movies,Athena,4.051,single,1,67.04 MB,112,Same SQL logic as DuckDB; data scanned reported by Athena
+Q5,MovieLens 32M,Long Tail top 1 percent,DuckDB,0.3533,single,1,,,32M ratings; concentration 54.88 percent
+Q5,MovieLens 32M,Long Tail top 1 percent,Athena,1.609,single,1,,,32M ratings; concentration 54.88 percent
+Full train,MovieLens 1B synthetic,Top 10 items,DuckDB,47.024,median,5,,,16 Parquet ZSTD shards; 1223962043 interactions; 4 threads
+Full train,MovieLens 1B synthetic,Top 10 items,Athena,4.532,single warm-up,1,2.98 GB,100,Only one run; do not treat as a five-run median
+CSV vs Parquet,MovieLens 32M,COUNT and AVG,DuckDB,,,5,,,Previous median speedup 24.53x; per-format times not included here
+Partition pruning,MovieLens 32M,Year 2023 filter,Athena,,,,,,282.07 KB partitioned vs 16.56 MB unpartitioned; approx 98.3 percent fewer bytes scanned
