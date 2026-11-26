@@ -1,0 +1,19 @@
+genre,movies,avg_critics,avg_crowd,avg_gap,avg_rank_gap,example_title,example_year,example_rank_gap
+War,244,71.7,65.4,-6.3,7.6,Blood Diamond,2006,49.7
+Mystery,443,60.7,56.0,-4.7,4.8,Lucky Number Slevin,2006,57.7
+Drama,3352,67.7,59.9,-7.8,3.7,The Boondock Saints,2000,73.7
+Crime,921,61.6,55.9,-5.8,3.7,The Boondock Saints,2000,73.7
+Romance,1169,61.0,55.3,-5.8,3.2,Forrest Gump,1994,40.3
+Film-Noir,63,86.4,73.5,-12.9,2.4,Dark City,1998,25.5
+Thriller,1692,56.6,51.2,-5.4,1.7,The Boondock Saints,2000,73.7
+Action,1307,52.7,48.3,-4.3,1.6,The Boondock Saints,2000,73.7
+Documentary,259,88.8,73.3,-15.4,-0.3,Super Size Me,2004,-18.1
+Fantasy,520,56.4,49.5,-6.8,-0.6,"Honey, I Shrunk the Kids",1989,-48.9
+Sci-Fi,657,56.6,49.3,-7.4,-0.9,"Honey, I Shrunk the Kids",1989,-48.9
+Comedy,2502,57.0,49.3,-7.7,-1.4,Arachnophobia,1990,-72.9
+Adventure,915,59.3,50.4,-8.9,-1.9,"Honey, I Shrunk the Kids",1989,-48.9
+Western,118,72.3,59.7,-12.6,-2.4,Shanghai Noon,2000,-18.1
+Musical,235,72.1,56.7,-15.5,-6.4,Pinocchio,1940,-46.0
+Horror,745,54.6,43.9,-10.7,-6.9,Arachnophobia,1990,-72.9
+Animation,304,68.9,53.9,-15.0,-7.3,Antz,1998,-47.3
+Children,457,60.2,45.9,-14.3,-9.5,"Honey, I Shrunk the Kids",1989,-48.9

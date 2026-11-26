@@ -1,0 +1,5 @@
+query,table,data_scanned_MB,run_time_s,notes
+E1 crowd score 2023,ratings (not partitioned),,,
+E2 crowd score 2023,ratings_by_year (partitioned),,,
+C1 crowd_scores CTAS,ratings,,,
+C2 critics_vs_crowd CTAS,several,,,
