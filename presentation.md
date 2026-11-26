@@ -76,3 +76,21 @@ outline:
 - answer to questions
     - 
 - Indicate limitations & possibilities for future work
+
+
+Skeleton of the presentation
+- Cover 1 SLIDE Completed
+- Purpose 1 SLIDE
+- Sources (Like Tomatoes and T & IMDB) 1 SLIDE
+- How (Architecture) 100k to 1B (Local to Cloud) 2 SLIDES
+- Explorarion 4/5 SLIDES
+  - Monter thinggy
+  - 1%
+  - Contagion Covid
+  - 
+- Demo LIBI
+
+- BACKGROUND SLIDES
+- Basic Questions (4) 1 SLIDE
+- Benchmarket 1 SLIDE
+-  
