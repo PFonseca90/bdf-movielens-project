@@ -23,8 +23,8 @@ PROJECT_ROOT = (
 )
 
 # %%
-RAW_DIR = PROJECT_ROOT / "Data" / "Raw" / "MovieLens"
-PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet" / "MovieLens"
+RAW_DIR = PROJECT_ROOT / "Data" / "Raw" / "ml-32m"
+PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet" / "ml-32m"
 
 # %%
 # MovieLens files
