@@ -47,6 +47,28 @@ The initial analysis is developed locally using DuckDB, Parquet and Python. The 
 4. Cloud (AWS Academy Learner Lab): upload the Parquet files to S3, then run `sql/athena/01_create_tables.sql`, `02_ctas_ratings_by_year.sql`, `03_critics_vs_crowd.sql` in Athena. Record "Data scanned" and "Run time" in `results/athena_evidence.csv`.
 5. Game: open `presentation/film-snob-game/dist/index.html` (double-click). To rebuild after new data: `cd presentation/film-snob-game && npm install && npm run build`.
 
+### MovieLens 1B — Data Paths
+
+By default, the MovieLens 1B scripts use:
+
+- `Data/Raw/ml-1b/ml-20mx16x32/`
+- `Data/Parquet/ml-1b/`
+- `Data/duckdb_temp/`
+
+To store large datasets outside the project, set the
+`BDF_DATA_ROOT` environment variable.
+
+Example (Windows CMD):
+
+```cmd
+set BDF_DATA_ROOT=C:\BDF_Data
+```
+
+Both `04_inspect_movielens_1b.py` and
+`05_validate_movielens_1b.py` support this configuration.
+
+The raw MovieLens 1B files must be downloaded separately.
+
 ### Folder map
 ```
 src/                      Python pipeline (01-05 team ingestion/EDA/benchmarks, 06-09 critics vs crowd)
