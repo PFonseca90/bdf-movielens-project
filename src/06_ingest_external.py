@@ -11,8 +11,8 @@ To compare the crowd with professional critics we add:
 Same pattern as 01_data_ingestion: CSV/TSV -> DuckDB -> Parquet (ZSTD).
 
 Expected raw files (download links in README):
-  Data/External/rotten_tomatoes/rotten_tomatoes_movies.csv
-  Data/External/imdb/title.ratings.tsv.gz
+  Data/Raw/RottenTomatoes/rotten_tomatoes_movies.csv
+  Data/Raw/IMDB/title.ratings.tsv.gz
 Output:
   Data/Parquet/external/rt_movies.parquet
   Data/Parquet/external/imdb_ratings.parquet
@@ -21,12 +21,12 @@ from pathlib import Path
 import duckdb
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-EXT_DIR = PROJECT_ROOT / "Data" / "External"
+RAW_DIR = PROJECT_ROOT / "Data" / "Raw"
 OUT_DIR = PROJECT_ROOT / "Data" / "Parquet" / "external"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-RT_CSV = EXT_DIR / "rotten_tomatoes" / "rotten_tomatoes_movies.csv"
-IMDB_TSV = EXT_DIR / "imdb" / "title.ratings.tsv.gz"
+RT_CSV = RAW_DIR / "RottenTomatoes" / "rotten_tomatoes_movies.csv"
+IMDB_TSV = RAW_DIR / "IMDB" / "title.ratings.tsv.gz"
 
 con = duckdb.connect()
 

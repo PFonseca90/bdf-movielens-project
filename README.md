@@ -34,8 +34,8 @@ The initial analysis is developed locally using DuckDB, Parquet and Python. The 
 1. `pip install -r requirements.txt`
 2. Put the raw files here (not in git):
    * `Data/Raw/ml-32m/` ← unzip https://files.grouplens.org/datasets/movielens/ml-32m.zip
-   * `Data/External/rotten_tomatoes/rotten_tomatoes_movies.csv` ← https://www.kaggle.com/datasets/stefanoleone992/rotten-tomatoes-movies-and-critic-reviews-dataset
-   * `Data/External/imdb/title.ratings.tsv.gz` ← https://datasets.imdbws.com/title.ratings.tsv.gz
+   * `Data/Raw/RottenTomatoes/rotten_tomatoes_movies.csv` ← https://www.kaggle.com/datasets/stefanoleone992/rotten-tomatoes-movies-and-critic-reviews-dataset
+   * `Data/Raw/IMDB/title.ratings.tsv.gz` ← https://datasets.imdbws.com/title.ratings.tsv.gz (or run `python src/imdb_download.py`)
 3. Run in order:
    ```
    python src/01_data_ingestion_32m.py     # MovieLens CSV -> Parquet
@@ -53,7 +53,7 @@ src/                      Python pipeline (01-05 team ingestion/EDA/benchmarks, 
 sql/athena/               Athena DDL, CTAS (partitioned by year), critics-vs-crowd queries
 results/critics_vs_crowd/ CSV results   results/charts/ PNG charts for the slides
 presentation/film-snob-game/  classroom game (React + Vite), reads src/gameData.json
-Data/ (git-ignored)       Raw/, External/, Parquet/
+Data/ (git-ignored)       Raw/, Parquet/
 ```
 
 ## Canonical Question
@@ -122,7 +122,7 @@ ____Data
 | | | |____title_principals.parquet
 | | | |____title_akas.parquet
 | | | |____title_crew.parquet
-| | |____MovieLens
+| | |____ml-32m
 | | | |____ratings.parquet
 | | | |____movies.parquet
 | | | |____tags.parquet
@@ -139,7 +139,9 @@ ____Data
 | | | |____title.ratings.tsv.gz
 | | | |____name.basics.tsv.gz
 | | | |____title.episode.tsv.gz
-| | |____MovieLens
+| | |____RottenTomatoes
+| | | |____rotten_tomatoes_movies.csv
+| | |____ml-32m
 | | | |____links.csv
 | | | |____tags.csv
 | | | |____checksums.txt

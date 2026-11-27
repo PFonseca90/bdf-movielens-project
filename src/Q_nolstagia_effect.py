@@ -15,8 +15,8 @@
 # %%
 import duckdb
 
-RATINGS = "../Data/Parquet/MovieLens/ratings.parquet"
-MOVIES = "../Data/Parquet/MovieLens/movies.parquet"
+RATINGS = "../Data/Parquet/ml-32m/ratings.parquet"
+MOVIES = "../Data/Parquet/ml-32m/movies.parquet"
 
 # The "Nostalgia Effect": do users rate older classics (e.g., 1970s films) higher
 # than modern releases simply because only dedicated fans seek out older movies?

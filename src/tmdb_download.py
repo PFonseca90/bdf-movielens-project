@@ -67,7 +67,7 @@ AUTH_HEADERS, AUTH_PARAMS = (
     else ({}, {"api_key": API_KEY})
 )
 
-LINKS_PATH = RAW_DIR / "MovieLens" / "links.csv"
+LINKS_PATH = RAW_DIR / "ml-32m" / "links.csv"
 OUTPUT_JSONL = TMDB_RAW / "tmdb.jsonl"
 PARQUET_PATH = TMDB_PARQUET / "tmdb.parquet"
 

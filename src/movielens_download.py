@@ -34,10 +34,10 @@ RAW_DIR = PROJECT_ROOT / "Data" / "Raw"
 PARQUET_DIR = PROJECT_ROOT / "Data" / "Parquet"
 
 # %%
-MOVIELENS_RAW = RAW_DIR / "MovieLens"
+MOVIELENS_RAW = RAW_DIR / "ml-32m"
 MOVIELENS_RAW.mkdir(parents=True, exist_ok=True)
 
-MOVIELENS_PARQUET = PARQUET_DIR / "MovieLens"
+MOVIELENS_PARQUET = PARQUET_DIR / "ml-32m"
 MOVIELENS_PARQUET.mkdir(parents=True, exist_ok=True)
 
 # %%
