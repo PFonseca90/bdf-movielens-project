@@ -80,17 +80,17 @@ outline:
 
 Skeleton of the presentation
 - Cover 1 SLIDE Completed
-- Purpose 1 SLIDE
-- Sources (Like Tomatoes and T & IMDB) 1 SLIDE
-- How (Architecture) 100k to 1B (Local to Cloud) 2 SLIDES
+- Purpose 1 SLIDE Pedro
+- Sources (Like Tomatoes and T & IMDB) 1 SLIDE Keni
+- How (Architecture) 100k to 1B (Local to Cloud) 2 SLIDES Pedro & Keni
 - Explorarion 4/5 SLIDES
-  - Monter thinggy
-  - 1%
-  - Contagion Covid
-  - 
+  - Monster thinggy Pedro
+  - 1% Alice
+  - Contagion Covid Libi
+  - Keni
 - Demo LIBI
 
 - BACKGROUND SLIDES
-- Basic Questions (4) 1 SLIDE
-- Benchmarket 1 SLIDE
+- Basic Questions (4) 1 SLIDE Alice
+- Benchmarket 1 SLIDE Pedro
 -  
