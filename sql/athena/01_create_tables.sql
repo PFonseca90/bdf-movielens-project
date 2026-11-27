@@ -1,16 +1,14 @@
 -- =====================================================================
--- 01 - Register the Parquet files in the Glue Data Catalog (Athena)
--- Replace YOUR-BUCKET with your bucket. Run each statement on its own.
+-- 01 - Registered Parquet files in the Glue Data Catalog (Athena)
+-- Run each statement on its own.
 --
--- Upload first (S3 console or CloudShell `aws s3 cp`), one folder per table:
---   Data/Parquet/ml-32m/ratings.parquet        -> s3://YOUR-BUCKET/movielens/ratings/
---   Data/Parquet/ml-32m/movies.parquet         -> s3://YOUR-BUCKET/movielens/movies/
---   Data/Parquet/ml-32m/links.parquet          -> s3://YOUR-BUCKET/movielens/links/
---   Data/Parquet/ml-32m/tags.parquet           -> s3://YOUR-BUCKET/movielens/tags/
---   Data/Parquet/external/rt_movies.parquet    -> s3://YOUR-BUCKET/external/rt_movies/
---   Data/Parquet/external/imdb_ratings.parquet -> s3://YOUR-BUCKET/external/imdb_ratings/
--- (Alternative to these DDLs: point a Glue Crawler at s3://YOUR-BUCKET/movielens/
---  and s3://YOUR-BUCKET/external/ - same result, as in the BDF_5 lab.)
+--   Data/Parquet/ml-32m/ratings.parquet        -> s3://bdf-movielens-32m/raw/ratings/
+--   Data/Parquet/ml-32m/movies.parquet         -> s3://bdf-movielens-32m/raw/movies/
+--   Data/Parquet/ml-32m/links.parquet          -> s3://bdf-movielens-32m/raw/links/
+--   Data/Parquet/ml-32m/tags.parquet           -> s3://bdf-movielens-32m/raw/tags/
+--   Data/Parquet/external/rt_movies.parquet    -> s3://bdf-movielens-32m/raw/external/rt_movies/
+--   Data/Parquet/external/imdb_ratings.parquet -> s3://bdf-movielens-32m/raw/external/imdb_ratings/
+
 -- =====================================================================
 
 CREATE DATABASE IF NOT EXISTS movielens_db;
@@ -22,7 +20,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.ratings (
   `timestamp` bigint
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/movielens/ratings/';
+LOCATION 's3://bdf-movielens-32m/raw/ratings/';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.movies (
   movieid bigint,
@@ -30,7 +28,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.movies (
   genres  string
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/movielens/movies/';
+LOCATION 's3://bdf-movielens-32m/raw/movies/';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.links (
   movieid bigint,
@@ -38,7 +36,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.links (
   tmdbid  bigint
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/movielens/links/';
+LOCATION 's3://bdf-movielens-32m/raw/links/';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.tags (
   userid      bigint,
@@ -47,7 +45,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.tags (
   `timestamp` bigint
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/movielens/tags/';
+LOCATION 's3://bdf-movielens-32m/raw/tags/';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.rt_movies (
   rotten_tomatoes_link string,
@@ -63,7 +61,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.rt_movies (
   rt_audience_count    int
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/external/rt_movies/';
+LOCATION 's3://bdf-movielens-32m/raw/external/rt_movies/';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.imdb_ratings (
   tconst      string,
@@ -71,9 +69,9 @@ CREATE EXTERNAL TABLE IF NOT EXISTS movielens_db.imdb_ratings (
   imdb_votes  int
 )
 STORED AS PARQUET
-LOCATION 's3://YOUR-BUCKET/external/imdb_ratings/';
+LOCATION 's3://bdf-movielens-32m/raw/external/imdb_ratings/';
 
--- Sanity checks (compare with the local DuckDB numbers in results/)
-SELECT count(*) FROM movielens_db.ratings;        -- expect 32,000,204
-SELECT count(*) FROM movielens_db.rt_movies;      -- expect 17,712
-SELECT count(*) FROM movielens_db.imdb_ratings;   -- expect ~1.7M (IMDb file of Nov 2026)
+--  checks (compare with the local DuckDB numbers in results/)
+SELECT count(*) FROM movielens_db.ratings;
+SELECT count(*) FROM movielens_db.rt_movies;
+SELECT count(*) FROM movielens_db.imdb_ratings;

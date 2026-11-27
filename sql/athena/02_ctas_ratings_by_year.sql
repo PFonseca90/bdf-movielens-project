@@ -7,7 +7,7 @@ CREATE TABLE movielens_db.ratings_by_year
 WITH (
   format = 'PARQUET',
   write_compression = 'ZSTD',
-  external_location = 's3://YOUR-BUCKET/ctas/ratings_by_year/',
+  external_location = 's3://bdf-movielens-32m/ctas/ratings_by_year/',
   partitioned_by = ARRAY['rating_year']
 ) AS
 SELECT userid,

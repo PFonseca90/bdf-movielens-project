@@ -10,7 +10,7 @@
 -- C1  Crowd score per movie: the 32M-row aggregation, done once (CTAS)
 CREATE TABLE movielens_db.crowd_scores
 WITH (format = 'PARQUET', write_compression = 'ZSTD',
-      external_location = 's3://YOUR-BUCKET/ctas/crowd_scores/') AS
+      external_location = 's3://bdf-movielens-32m/ctas/crowd_scores/') AS
 SELECT movieid,
        count(*)                                                          AS n_ratings,
        round(avg(rating), 3)                                             AS avg_rating,
@@ -21,7 +21,7 @@ GROUP BY movieid;
 -- C2  Matched analysis table (title + year match, one-to-one)
 CREATE TABLE movielens_db.critics_vs_crowd
 WITH (format = 'PARQUET', write_compression = 'ZSTD',
-      external_location = 's3://YOUR-BUCKET/ctas/critics_vs_crowd/') AS
+      external_location = 's3://bdf-movielens-32m/ctas/critics_vs_crowd/') AS
 WITH ml_a AS (
     SELECT movieid, title AS ml_title, genres,
            try_cast(regexp_extract(title, '\((\d{4})\)\s*$', 1) AS integer)          AS year,

@@ -9,10 +9,10 @@
 - [ ] Answer Basic Questions: Include SQL in source
 - [ ] Answer More Interesting Questions - Everybody
 - [ ] Explore & Add Complimentary Datasets
-    - [ ] IMDB - Libi
+    - [x] IMDB - Libi
     - [ ] TMDB - Keni
-    - [ ] Rotten Tomatoes, Reference in README.md - Libi
-- [ ] Organize Game Code in Repo - Libi
+    - [x] Rotten Tomatoes, Reference in README.md - Libi
+- [x] Organize Game Code in Repo - Libi
 - [ ] Prettify Basic Answers Charts
 - [ ] AWS Glue/Athena, Add queries to repo - Pedro
 - [ ] AWS Glue/Athena, Benchmark - Pedro
@@ -47,7 +47,7 @@
 
 ## Cloud Notes
 - Partition large ratings table by year, extracted from UNIX Timestamp
-- 
+-
 
 ## More Interesting Questions
 
