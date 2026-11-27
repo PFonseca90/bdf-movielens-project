@@ -3,6 +3,7 @@
 -- Run each query separately in Athena.
 -- Source data: MovieLens 32M and MovieLens 1B synthetic train shards.
 -- Query result reuse must be disabled when benchmarking.
+-- S3 Bucket: bdf-movielens-32m
 
 -- Q3: Distribution of the number of ratings per user (MovieLens 32M)
 WITH user_ratings AS (
