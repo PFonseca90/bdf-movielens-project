@@ -1,0 +1,6 @@
+pair,correlation,movies
+MovieLens crowd vs RT critics,0.782,6932
+MovieLens crowd vs RT audience,0.851,6931
+MovieLens crowd vs IMDb rating,0.909,6915
+RT audience vs RT critics,0.742,6931
+IMDb rating vs RT critics,0.778,6915

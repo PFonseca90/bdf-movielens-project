@@ -8,6 +8,9 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
+## we're using Jupytext to track our changes, there's no need to store Jupyter notebook files.
+*.ipynb
+
 # Data
 Data/Raw/
 Data/Parquet/
@@ -26,3 +29,8 @@ outputs/
 # OS
 .DS_Store
 Thumbs.db
+# DuckDB spill folder
+.duckdb_tmp/
+
+# Node (game)
+node_modules/
