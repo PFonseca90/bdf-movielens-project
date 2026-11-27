@@ -1,10 +1,24 @@
 
 from pathlib import Path
+import os
 import numpy as np
 
+# Locate the project folder automatically
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# Default: project Data folder
+# Optional: external data folder defined by BDF_DATA_ROOT
+DATA_ROOT = Path(
+    os.environ.get("BDF_DATA_ROOT", PROJECT_ROOT / "Data")
+)
+
 # MovieLens 1B - Inspect a single NPZ shard
-file_path = Path(
-    r"C:\BDF_Data\Raw\ml-1b\ml-20mx16x32\trainx16x32_1.npz"
+file_path = (
+    DATA_ROOT
+    / "Raw"
+    / "ml-1b"
+    / "ml-20mx16x32"
+    / "trainx16x32_1.npz"
 )
 
 with np.load(file_path, allow_pickle=False) as data:

@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import os
 import time
 import statistics
 
@@ -15,8 +16,18 @@ import duckdb
 # Convert 1.224B interactions to Parquet and compare local DuckDB performance with AWS Athena.
 # =====================================================
 
-RAW = Path(r"C:\BDF_Data\Raw\ml-1b\ml-20mx16x32")
-OUTPUT = Path(r"C:\BDF_Data\Parquet\ml-1b")
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+DATA_ROOT = Path(
+    os.environ.get(
+        "BDF_DATA_ROOT",
+        str(PROJECT_ROOT / "Data")
+    )
+)
+
+RAW = DATA_ROOT / "Raw" / "ml-1b" / "ml-20mx16x32"
+OUTPUT = DATA_ROOT / "Parquet" / "ml-1b"
 OUTPUT.mkdir(parents=True, exist_ok=True)
 
 EXPECTED_ROWS = 1_223_962_043
@@ -120,8 +131,13 @@ times = []
 with duckdb.connect() as con:
 
     con.execute("SET threads = 4")
+
+    TEMP_DIR = DATA_ROOT / "duckdb_temp"
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+
     con.execute(
-        "SET temp_directory = 'C:/BDF_Data/duckdb_temp'"
+        "SET temp_directory = ?",
+        [str(TEMP_DIR)]
     )
 
     # Warm-up, not included in measurements
